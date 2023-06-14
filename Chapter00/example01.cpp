@@ -95,9 +95,35 @@ int caculate_sum(int *array) {
 }*/
 
 /*
- * 4. 동적 배열
-    *
+ * 4. Array Reallocation
+    * 동적으로 할당된 배열은 공간이 부족할 경우 더 큰 배열을 할당하여 사용할 수 있다.
+        * 1. int array[4]
+        * 2. int * array = (int *) malloc(4*sizeof (int));의 차이
+            * 1번과 2번의 차이는 아래의 예제처럼 이식이 불가능하다 ( array = tmp; 가 불가능하다.)
+        * 아래의 예제는 int * array = (int *) malloc(4*sizeof (int));로 생성한 배열의 할당을 해제하지 않음
+        * garbege가 남아있기 때문에 아래의 예제는 큰 하자를 가지고 있다.
 */
 int main(){
+    // sizeof 연산자를 활용한 int형 배열 생성
+    // sizeof(자료형) : 변수가 몇 byte를 사용하는지 return함
+    // 프로그램마다 자료형이 차지하는 메모리의 크기가 다를 수 있기 때문에 malloc(12) 같은 형태로 동적 메모리를 할당하는 방법은 이식성이 좋지않다.
+    int * array = (int *) malloc(4*sizeof (int));
+    array[0] = 1;
+    array[1] = 2;
+    *(array+2)= 3;
 
+    /*배열 array의 크기가 부족한 상황이 발생한다.*/
+    // int형 8칸 배열 생성 32byte
+    int * tmp = (int *) malloc(8*sizeof (int));
+    int i;
+
+    // 기존 배열의 원소를 tmp 배열이 이식받는다.
+    for (i=0; i<4; i++) tmp[i] = array[i];
+
+    // 32 byte의 배열 메모리 주소 (tmp)를 array 이식한다.
+    array = tmp;
+    array[4] = 4;
+    array[5] = 5;
+
+    printf("%d" , array[5]);
 }
