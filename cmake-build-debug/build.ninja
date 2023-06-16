@@ -49,8 +49,8 @@ cmake_ninja_workdir = /Users/plod/Desktop/2_PloStudy/30_DataStructureInC/02_Infl
 
 build cmake_object_order_depends_target_02_InflearnProject: phony || CMakeFiles/02_InflearnProject.dir
 
-build CMakeFiles/02_InflearnProject.dir/Chapter00/example01.cpp.o: CXX_COMPILER__02_InflearnProject_Debug /Users/plod/Desktop/2_PloStudy/30_DataStructureInC/02_InflearnProject/Chapter00/example01.cpp || cmake_object_order_depends_target_02_InflearnProject
-  DEP_FILE = CMakeFiles/02_InflearnProject.dir/Chapter00/example01.cpp.o.d
+build CMakeFiles/02_InflearnProject.dir/Chapter00/example02.cpp.o: CXX_COMPILER__02_InflearnProject_Debug /Users/plod/Desktop/2_PloStudy/30_DataStructureInC/02_InflearnProject/Chapter00/example02.cpp || cmake_object_order_depends_target_02_InflearnProject
+  DEP_FILE = CMakeFiles/02_InflearnProject.dir/Chapter00/example02.cpp.o.d
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk -fcolor-diagnostics -std=gnu++14
   OBJECT_DIR = CMakeFiles/02_InflearnProject.dir
   OBJECT_FILE_DIR = CMakeFiles/02_InflearnProject.dir/Chapter00
@@ -63,7 +63,7 @@ build CMakeFiles/02_InflearnProject.dir/Chapter00/example01.cpp.o: CXX_COMPILER_
 #############################################
 # Link the executable 02_InflearnProject
 
-build 02_InflearnProject: CXX_EXECUTABLE_LINKER__02_InflearnProject_Debug CMakeFiles/02_InflearnProject.dir/Chapter00/example01.cpp.o
+build 02_InflearnProject: CXX_EXECUTABLE_LINKER__02_InflearnProject_Debug CMakeFiles/02_InflearnProject.dir/Chapter00/example02.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.1.sdk
   OBJECT_DIR = CMakeFiles/02_InflearnProject.dir
   POST_BUILD = :
