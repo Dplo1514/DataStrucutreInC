@@ -84,6 +84,7 @@ char * strdup(char *s){
  * 3.txt 파일을 읽고 써보자
 */
 
+/*
 int main(){
     //input.txt 를 output.txt에 쓰기
     FILE *in_fp = fopen("/Users/plod/Desktop/2_PloStudy/30_DataStructureInC/02_InflearnProject/input.txt" , "r");
@@ -102,3 +103,23 @@ int main(){
 //         printf("%s \n" , buffer);
 //     fclose(fp);
 }
+*/
+int main(){
+    //input.txt 를 output.txt에 쓰기
+    FILE *in_fp = fopen("/Users/plod/Desktop/2_PloStudy/30_DataStructureInC/02_InflearnProject/input.txt" , "r");
+    FILE *out_fp = fopen("/Users/plod/Desktop/2_PloStudy/30_DataStructureInC/02_InflearnProject/output.txt" , "w");
+    char buffer[100];
+    while (fscanf(in_fp, "%s", buffer) != EOF) {
+        fprintf(out_fp, "%s \n", buffer);
+    }
+    fclose(in_fp);
+    fclose(out_fp);
+
+    // 파일 읽기
+//     FILE * fp = fopen("/Users/plod/Desktop/2_PloStudy/30_DataStructureInC/02_InflearnProject/input.txt" , "r");
+//     char buffer[100];
+//     while (fscanf(fp , "%s" , buffer) != EOF)
+//         printf("%s \n" , buffer);
+//     fclose(fp);
+}
+
