@@ -8,9 +8,11 @@
 #include <string.h>
 
 /*
- * 1.문자열
+ * FIXME
+    * 1.문자열
     * 문자열은 char Type 배열에 하나씩 저장됨
 */
+
 /*
 int main() {
     char str[6];
@@ -35,8 +37,10 @@ int main() {
 //#####################################################################################################################
 
 /*
- * 2.여러개의 단어들을 포인터를 이용하여 저장해보자
+ * FIXME
+    * 2.여러개의 단어들을 포인터를 이용하여 저장해보자
 */
+
 /*
 # define BUFFER_SIZE 100
 int main(){
@@ -59,7 +63,7 @@ int main(){
         *//*
          * 위와 같은 문제를 해결하기 위해 buffer에 입력된 문자열을 카피하여 words의 n번째에 저장한다.
          * strcpy(array1 , array2) || strcpy(str1 , str2)
-         * strdup : fosix 표준에 속하는 라이브러리 허나 대부분의 c 컴파일러는 strdup를 지원한다. 허나 c 표준에 속해있지 않기 때문에 사용을 자제할 것
+         * strdup : fosix 표준에 속하는 라이브러리 허나 대부분의 c 컴파일러는 strdup를 지원한다. 허나 c 표준에 속해있지 않기 때문에 사용을 자제할 것 (posix standard)
             * 매개 변수로 하나의 문자열을 입력받아 문자열의 복제본을 생성 후 복제본의 주소를 리턴한다.
         *//*
         words[n] = strdup(buffer);
@@ -69,7 +73,13 @@ int main(){
         printf("%s\n" , words[i]);
 }
  */
-// strdup 직접 구현하기
+
+//#####################################################################################################################
+
+/*
+ * FIXME
+    * 3.strdup 직접 구현하기
+*/
 /*
 char * strdup(char *s){
     char *p;
@@ -80,8 +90,10 @@ char * strdup(char *s){
 }*/
 
 //#####################################################################################################################
+
 /*
- * 3.txt 파일을 읽고 써보자
+ * FIXME
+    * 4.txt 파일을 읽고 써보자
 */
 
 /*
@@ -97,29 +109,127 @@ int main(){
     fclose(out_fp);
 
     // 파일 읽기
-//     FILE * fp = fopen("/Users/plod/Desktop/2_PloStudy/30_DataStructureInC/02_InflearnProject/input.txt" , "r");
-//     char buffer[100];
-//     while (fscanf(fp , "%s" , buffer) != EOF)
-//         printf("%s \n" , buffer);
-//     fclose(fp);
+    FILE * fp = fopen("/Users/plod/Desktop/2_PloStudy/30_DataStructureInC/02_InflearnProject/input.txt" , "r");
+    char buffer[100];
+    while (fscanf(fp , "%s" , buffer) != EOF)
+        printf("%s \n" , buffer);
+    fclose(fp);
 }
 */
-int main(){
-    //input.txt 를 output.txt에 쓰기
-    FILE *in_fp = fopen("/Users/plod/Desktop/2_PloStudy/30_DataStructureInC/02_InflearnProject/input.txt" , "r");
-    FILE *out_fp = fopen("/Users/plod/Desktop/2_PloStudy/30_DataStructureInC/02_InflearnProject/output.txt" , "w");
-    char buffer[100];
-    while (fscanf(in_fp, "%s", buffer) != EOF) {
-        fprintf(out_fp, "%s \n", buffer);
-    }
-    fclose(in_fp);
-    fclose(out_fp);
 
-    // 파일 읽기
-//     FILE * fp = fopen("/Users/plod/Desktop/2_PloStudy/30_DataStructureInC/02_InflearnProject/input.txt" , "r");
-//     char buffer[100];
-//     while (fscanf(fp , "%s" , buffer) != EOF)
-//         printf("%s \n" , buffer);
-//     fclose(fp);
+//#####################################################################################################################
+
+/*
+ * FIXME
+    * 5.문자열 예제 [ 1 ]
+*/
+/*
+int read_line ( char str[] , int limit );
+#define BUFFER_SIZE 20
+int main(void)
+{
+    char buffer[BUFFER_SIZE];
+    while (1) {
+        printf("$ ");
+        */
+/*
+         * 1
+            scanf("%s")
+            * 사용자가 입력한 문장을 공백 단위로 끊어서 입력받음 그렇기에 공백을 포함하는 로직에서 부적절하다.
+            * scanf("%s" , buffer);
+         *//*
+
+
+        */
+/*
+         * 2
+            gets(buffer)
+            * 사용자가 입력한 문장을 줄바꿈 단위로 끊어서 입력받음 (buffer 사이즈 상관 X)
+            * warning: this program uses gets(), which is unsafe.
+            * buffer 사이즈 이상의 문자열을 입력해도 출력이 가능하다.
+            * gets(buffer);
+         *//*
+
+
+        */
+/*
+         * 3
+            fgets(buffer , BUFFER_SIZE , stdin)
+            * 임의의 파일로부터 데이터를 입력받을 수 있는 함수 ( new line char (\n) 까지 읽어서 buffer에 저장한다. )
+            * BUFFER_SIZE 만큼 읽고 한번 더 반복되어 나머지 글자를 한번 더 읽는다.
+            * buffer        : 저장될 객체
+            * BUFFER_SIZE   : 해당 BUFFER_SIZE 만큼만 데이터를 입력받는다.
+            * stdin         : 표준 입력파일에 대한 포인터 (키보드로 입력받는 것에 대한 포인터)
+
+            '''C++
+                fgets(buffer , BUFFER_SIZE , stdin);
+                // new line char (\n)을 null char로 바꾼다.
+                // '\0' : null char
+                buffer[strlen(buffer) -1 ] = '\0';
+
+                // %s -> 사용자가 입력한 문장을 출력 [ (buffer) ]
+                // %d -> 사용자가 입력한 문장의 길이를 출력 [ strlen(buffer) ]
+                printf("%s:%d\n" , buffer , strlen(buffer));
+            '''
+         *//*
+
+
+
+        // %s -> 사용자가 입력한 문장을 출력 [ (buffer) ]
+        // %d -> 사용자가 입력한 문장의 길이를 출력 [ strlen(buffer) ]
+        int len = read_line(buffer , BUFFER_SIZE);
+        printf("%s:%d\n" , buffer , len);
+    }
+    return 0;
 }
+// string의 lenth를 리턴하는 함수를 직접 만들어 사용한다.
+int read_line(char str[] , int limit) {
+    int ch, i = 0;  // ch는 현재 입력된 문자를 저장하는 변수, i는 문자열의 인덱스 변수
+    // getchar 함수를 사용하여 개행 문자를 만날 때까지 입력을 받음
+    while ((ch = getchar()) != '\n')
+        // 문자열의 길이가 제한을 넘지 않은 경우에만 실행
+        if (i < limit -1)
+            str[i++] = ch;  // 입력된 문자를 문자열에 저장하고 인덱스를 증가시킴
+
+    str[i] = '\0';  // 문자열의 마지막에 널 문자를 추가하여 문자열을 종료
+    return i;  // 입력된 문자열의 길이를 반환
+}
+ */
+
+//#####################################################################################################################
+
+/*
+* FIXME
+    * 6.문자열 예제 [ 2 ]
+*/
+int read_line_with_compression ( char compressed[] , int limit);
+#include <ctype.h>
+int main(void)
+{
+    char line[80];
+    while (1) {
+        printf("$ ");
+        int length = read_line_with_compression(line , 80);
+        printf("%s:%d\n" , line , length);
+    }
+}
+
+int read_line_with_compression(char compressed[], int limit) {
+    int ch, i = 0;  // ch는 현재 입력된 문자를 저장하는 변수, i는 압축된 문자열의 인덱스 변수
+
+    // getchar 함수를 사용하여 개행 문자를 만날 때까지 입력을 받음
+    while ((ch = getchar()) != '\n') {
+        // i가 limit-1보다 작고, 공백 문자가 아니거나 i가 0보다 크고 이전 문자가 공백 문자가 아닌 경우에 실행
+        if (i < limit - 1 && (!isspace(ch) || (i > 0 && !isspace(compressed[i - 1]))))
+            compressed[i++] = ch;  // 입력된 문자를 압축된 문자열에 저장하고 인덱스를 증가시킴
+    }
+
+    // 압축된 문자열의 마지막 문자가 공백 문자인 경우 i를 감소시킴
+    if (i > 0 && isspace(compressed[i - 1]))
+        i--;
+
+    compressed[i] = '\0';  // 압축된 문자열의 마지막에 널 문자를 추가하여 문자열을 종료
+    return i;  // 압축된 문자열의 길이를 반환
+}
+
 
